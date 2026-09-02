@@ -1,0 +1,448 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — alexweb Portfolio
+   Rich white / warm cream canvas, deep navy typography,
+   elegant gold accents, soft pastel icon surfaces.
+   ============================================================ */
+@theme {
+  --color-base: #fffefc; /* page background — warm white */
+  --color-base-2: #fffdf8; /* soft cream */
+  --color-cream: #fcf8ef; /* cream panel */
+
+  --color-panel: #ffffff; /* card surface */
+  --color-panel-soft: #fffdf8; /* soft warm surface */
+  --color-panel-2: #faf7ef; /* warm ivory surface */
+
+  --color-line: #eaecf0; /* primary border */
+  --color-line-soft: #f2f4f7; /* secondary border */
+
+  --color-ink: #101828; /* primary text — deep navy */
+  --color-ink-2: #182230; /* secondary heading */
+  --color-muted: #667085; /* muted text */
+  --color-muted-2: #98a2b3; /* light text */
+
+  --color-accent: #c88a08; /* rich gold */
+  --color-accent-hover: #a96f05;
+  --color-accent-soft: #fff4d6; /* gold pastel */
+
+  --color-pastel-blue: #eaf2ff;
+  --color-pastel-green: #eaf8f0;
+  --color-pastel-purple: #f3edff;
+  --color-pastel-orange: #fff0e5;
+  --color-pastel-pink: #fdedf4;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
+
+  --radius-card: 14px;
+
+  --shadow-soft: 0 4px 20px rgba(16, 24, 40, 0.05);
+  --shadow-card: 0 8px 30px rgba(16, 24, 40, 0.06);
+  --shadow-hover: 0 12px 35px rgba(16, 24, 40, 0.09);
+  --shadow-glow: 0 8px 30px rgba(16, 24, 40, 0.06);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* ---------------- Base ---------------- */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(200, 138, 8, 0.22);
+  color: #101828;
+}
+
+/* Extremely faint warm cream/gold ambient washes (barely noticeable) */
+.app-bg {
+  position: relative;
+}
+.app-bg::before,
+.app-bg::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  border-radius: 9999px;
+  filter: blur(120px);
+  pointer-events: none;
+}
+.app-bg::before {
+  top: -140px;
+  left: 50%;
+  transform: translateX(-70%);
+  width: 760px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(224, 181, 90, 0.13),
+    transparent 65%
+  );
+}
+.app-bg::after {
+  top: 960px;
+  right: -200px;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 138, 8, 0.06),
+    transparent 65%
+  );
+}
+
+/* ---------------- Reusable utilities ---------------- */
+.container-site {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@media (width < 64rem) {
+  .container-site {
+    padding-inline: 20px;
+  }
+}
+
+@media (width < 40rem) {
+  .container-site {
+    padding-inline: 16px;
+  }
+}
+
+/* Gradient text helper — rich warm gold */
+.text-gradient {
+  background: linear-gradient(94deg, #d39a18 0%, #c88a08 55%, #b47a05 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Kept for compatibility — deep navy */
+.text-gradient-blue {
+  background: linear-gradient(92deg, #101828 0%, #3a4356 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Clean white card */
+.card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Section label — small uppercase gold text */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* ============================================================
+   HERO — mobile organisation (matches the supplied mobile CSS)
+   Mobile:  content → mockup → technologies (stacked, with gold
+   decorations). md–lg keeps the earlier stacked arrangement and
+   lg keeps the original two-column desktop layout.
+   ============================================================ */
+
+/* Faint warm radial wash, mobile only */
+.hero-mobile-bg {
+  background: radial-gradient(
+    circle at 92% 26%,
+    rgba(220, 170, 60, 0.1),
+    transparent 24%
+  );
+}
+
+/* One grid whose areas reorder responsively */
+.hero-grid {
+  display: grid;
+  grid-template-areas:
+    "l"
+    "m"
+    "t";
+}
+/* Allow grid cells to shrink — prevents wide mockup content from
+   overflowing and being clipped on the right on small screens */
+.hero-grid > * {
+  min-width: 0;
+}
+.hgl {
+  grid-area: l;
+}
+.hgm {
+  grid-area: m;
+}
+.hgt {
+  grid-area: t;
+}
+
+/* ---------- Mobile (< 48rem): badge → title → desc → CTAs → mockup → tech ---------- */
+.hgm {
+  margin-top: 34px;
+  padding-bottom: 68px; /* room for the phone that hangs below the laptop */
+}
+.hgt {
+  margin-top: 24px;
+}
+
+/* Hide scrollbars on the horizontal tech strip */
+.hero-tech-list {
+  scrollbar-width: none;
+}
+.hero-tech-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Mobile-only decorations ---------- */
+.hero-dot-pattern {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  opacity: 0.35;
+  background-image: radial-gradient(
+    circle,
+    rgba(200, 138, 10, 0.4) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+.hero-dot-1 {
+  top: 150px;
+  right: 12px;
+}
+.hero-dot-2 {
+  bottom: 60px;
+  left: 4px;
+}
+.hero-circle {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  right: -90px;
+  bottom: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(221, 174, 71, 0.13),
+    rgba(221, 174, 71, 0)
+  );
+  pointer-events: none;
+}
+
+/* ---------- Tablet (48rem → 64rem): keep earlier stacked order ---------- */
+@media (width >= 48rem) and (width < 64rem) {
+  .hero-mobile-bg {
+    background: transparent;
+  }
+  .hero-deco {
+    display: none;
+  }
+  .hero-grid {
+    grid-template-areas:
+      "l"
+      "t"
+      "m";
+  }
+  .hgm {
+    margin-top: 40px;
+    padding-bottom: 0;
+  }
+  .hgt {
+    margin-top: 32px;
+    border-top: 1px solid var(--color-line);
+    padding-top: 20px;
+  }
+}
+
+/* ---------- Desktop (≥ 64rem): two columns, tech under the heading ---------- */
+@media (width >= 64rem) {
+  .hero-mobile-bg {
+    background: transparent;
+  }
+  .hero-deco {
+    display: none;
+  }
+  .hero-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "l m"
+      "t m";
+    column-gap: 2rem;
+    align-items: center;
+  }
+  .hgm {
+    margin-top: 0;
+    padding-bottom: 0;
+    align-self: center;
+  }
+  .hgt {
+    margin-top: 28px;
+    border-top: 1px solid var(--color-line);
+    padding-top: 20px;
+  }
+}
+
+/* ============================================================
+   TESTIMONIALS — auto-sliding marquee
+   ============================================================ */
+.testi-marquee {
+  position: relative;
+}
+
+.testi-viewport {
+  overflow: hidden;
+  padding: 6px 4px 10px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 3%,
+    #000 97%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 3%,
+    #000 97%,
+    transparent
+  );
+}
+
+.testi-track {
+  display: flex;
+  width: max-content;
+  animation: testi-slide 42s linear infinite;
+  will-change: transform;
+}
+
+/* Pause while hovering or when the tab is hidden */
+.testi-marquee:hover .testi-track {
+  animation-play-state: paused;
+}
+
+.testi-group {
+  display: flex;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+@keyframes testi-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testi-track {
+    animation: none;
+  }
+}
+
+/* Anchored sections clear the fixed navbar when jumped to */
+section[id],
+footer[id] {
+  scroll-margin-top: 92px;
+}
+
+/* Lightbox gallery */
+@keyframes lbFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lbZoom {
+  from { opacity: 0; transform: scale(0.965); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lbFade {
+  animation: lbFade 0.25s ease both;
+}
+
+.lbZoom {
+  animation: lbZoom 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lbFade,
+  .lbZoom {
+    animation: none !important;
+  }
+}
