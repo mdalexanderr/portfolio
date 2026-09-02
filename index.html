@@ -7,6 +7,19 @@
     <meta name="description" content="alexweb — Full Stack Web Developer building custom, high-performance e-commerce websites that drive results." />
     <meta name="theme-color" content="#FFFEFC" />
     <meta property="og:title" content="alexweb — Full Stack Web Developer" />
+    <script>
+      // Restore a deep link (e.g. /portfolio/projects) remembered by 404.html
+      // after GitHub Pages served the fallback on a hard refresh / direct visit.
+      ;(function () {
+        const redirect = sessionStorage.getItem('redirect')
+        if (redirect) {
+          sessionStorage.removeItem('redirect')
+          if (redirect !== location.pathname) {
+            history.replaceState(null, null, redirect)
+          }
+        }
+      })()
+    </script>
     <meta property="og:description" content="I design and develop high-performance, secure and scalable e-commerce websites tailored to your business." />
     <meta property="og:type" content="website" />
     <title>alexweb — Full Stack Web Developer</title>

@@ -4,6 +4,10 @@ import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
 
+// Vite injects BASE_URL: "/" in dev, "/portfolio/" on GitHub Pages.
+// React Router needs it as a basename without the trailing slash.
+const basename = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/'
+
 /**
  * ScrollManager — scrolls to top on route change, and smooth-scrolls
  * to an in-page anchor (e.g. /#services) once the target is mounted.
@@ -28,7 +32,7 @@ function ScrollManager() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ScrollManager />
       <Routes>
         <Route path="/" element={<HomePage />} />
