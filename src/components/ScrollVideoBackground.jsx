@@ -62,6 +62,7 @@ export default function ScrollVideoBackground() {
     let isSeeking = false
     let seekWatchdog = 0
     let logCounter = 0
+    let currentSrc = ''
 
     const measureMaxScroll = () => {
       const doc = document.documentElement
@@ -161,7 +162,21 @@ export default function ScrollVideoBackground() {
 
     const onScroll = () => scheduleProcess()
 
+    const pickSource = () => (useMobileSource() ? mobileVideo : desktopVideo)
+
     const onResize = () => {
+      // Re-pick the encode when the device profile changes (e.g. a phone
+      // rotated, or a tablet/desktop window crossed the mobile breakpoint).
+      const next = pickSource()
+      if (!reduceMotion && next !== currentSrc) {
+        currentSrc = next
+        duration = 0 // wait for the new media's metadata
+        isSeeking = false
+        window.clearTimeout(seekWatchdog)
+        video.src = next
+        video.load()
+        return
+      }
       // Only the page height / maxScroll needs recalculating — which happens
       // in processTarget. The video time itself is NOT reset.
       scheduleProcess()
@@ -183,7 +198,8 @@ export default function ScrollVideoBackground() {
     // Reduced motion: show the static poster/first frame only — skip loading
     // the heavy video entirely.
     if (!reduceMotion) {
-      video.src = useMobileSource() ? mobileVideo : desktopVideo
+      currentSrc = pickSource()
+      video.src = currentSrc
       video.load()
       video.addEventListener('loadedmetadata', onLoadedMetadata)
       video.addEventListener('loadeddata', onLoadedData)
