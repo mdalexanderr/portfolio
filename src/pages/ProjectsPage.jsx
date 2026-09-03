@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Check, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
+import { Check, ArrowUpRight, X, ChevronLeft, ChevronRight, ZoomIn, Rocket } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { favonia, projects } from '../data/projects'
@@ -9,6 +9,18 @@ import { favonia, projects } from '../data/projects'
 const allShots = [
   ...favonia.storefrontShots.map((s) => ({ ...s, group: 'Storefront' })),
   ...favonia.adminShots.map((s) => ({ ...s, group: 'Admin panel' })),
+]
+
+/* Gallery groups for the tabbed screenshot section. Each maps to a slice of
+   `allShots` so the lightbox index stays correct across tabs. */
+const GALLERY_GROUPS = [
+  { id: 'storefront', label: 'Storefront', shots: favonia.storefrontShots, offset: 0 },
+  {
+    id: 'admin',
+    label: 'Admin panel',
+    shots: favonia.adminShots,
+    offset: favonia.storefrontShots.length,
+  },
 ]
 
 /* Fullscreen lightbox — Esc / arrows / backdrop close, prev & next */
@@ -109,27 +121,27 @@ function Lightbox({ shots, index, setIndex, onClose }) {
   )
 }
 
-function ShotGrid({ title, shots, startIndex = 1, onOpen }) {
+function ShotGrid({ title, shots, offset = 0, onOpen, showHeader = true }) {
   return (
     <div className="reveal">
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
-          <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
-          {title}
-        </h3>
-        <span className="text-[12px] font-medium text-muted-2">
-          {shots.length} screens
-        </span>
-      </div>
-      <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {showHeader && (
+        <div className="flex items-center justify-between gap-4">
+          <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#344054]">
+            <span aria-hidden="true" className="inline-block h-px w-6 bg-[#C88A08]" />
+            {title}
+          </h3>
+          <span className="text-[12px] font-medium text-muted-2">{shots.length} screens</span>
+        </div>
+      )}
+      <div className={`grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 ${showHeader ? 'mt-5' : ''}`}>
         {shots.map((img, i) => (
           <figure
             key={img.src}
-            className="group overflow-hidden rounded-[16px] border border-[#E9E4D8] bg-white shadow-[0_6px_24px_-12px_rgba(16,24,40,0.12)]"
+            className="group overflow-hidden rounded-[18px] border border-white/70 bg-white/45 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md"
           >
             <button
               type="button"
-              onClick={() => onOpen?.(startIndex + i - 1)}
+              onClick={() => onOpen?.(offset + i)}
               aria-label={`View ${img.label} in the gallery`}
               title="Click to enlarge"
               className="relative block aspect-[16/11] w-full cursor-zoom-in overflow-hidden bg-[#F5F1E6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C88A08]"
@@ -157,7 +169,7 @@ function ShotGrid({ title, shots, startIndex = 1, onOpen }) {
             <figcaption className="flex items-center justify-between px-4 py-3">
               <span className="text-[12.5px] font-semibold text-[#344054]">{img.label}</span>
               <span className="text-[11px] font-medium text-[#B9B4A6]">
-                {String(startIndex + i).padStart(2, '0')}
+                {String(offset + i + 1).padStart(2, '0')}
               </span>
             </figcaption>
           </figure>
@@ -169,6 +181,7 @@ function ShotGrid({ title, shots, startIndex = 1, onOpen }) {
 
 export default function ProjectsPage() {
   const [galleryIndex, setGalleryIndex] = useState(null)
+  const [shotTab, setShotTab] = useState('storefront')
 
   useEffect(() => {
     document.title = 'Projects — alexweb'
@@ -196,63 +209,115 @@ export default function ProjectsPage() {
     <div className="app-bg relative min-h-screen">
       <Navbar />
       <main className="relative z-10">
-        {/* ---------- Page header ---------- */}
-        <section className="bg-white">
-          <div className="container-site pb-10 pt-[104px] lg:pb-12 lg:pt-[122px]">
-            <p className="reveal section-label">
-              <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
-              Selected Work
-            </p>
-            <h1 className="reveal mt-3 max-w-[720px] text-[34px] font-extrabold leading-[1.1] tracking-tight text-ink sm:text-[46px] lg:text-[54px]">
-              Projects &amp; case studies
-            </h1>
-            <p className="reveal mt-4 max-w-[560px] text-[15.5px] leading-relaxed text-[#475467]">
-              E-commerce platforms, course marketplaces and corporate systems —
-              built end-to-end with clean frontends, real admin tools and dependable deployment.
-            </p>
+        {/* ---------- Page header — frosted band ---------- */}
+        <section>
+          <div className="container-site pt-[104px] lg:pt-[122px]">
+            <div className="reveal relative overflow-hidden rounded-[26px] border border-white/70 bg-white/45 px-6 py-7 shadow-[0_20px_50px_-32px_rgba(16,24,40,0.35)] backdrop-blur-md sm:px-10 lg:px-14 lg:py-10">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#F2CE7A] via-[#C88A08] to-[#F2CE7A]"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-16 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(200,138,8,0.12),transparent_70%)] blur-2xl"
+              />
+              <div className="relative max-w-[840px]">
+                <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#C88A08]">
+                  <span aria-hidden="true" className="inline-block h-px w-8 bg-[#C88A08]" />
+                  Selected Work
+                </p>
+                <h1 className="mt-4 text-[34px] font-extrabold leading-[1.06] tracking-tight text-ink sm:text-[46px] lg:text-[54px]">
+                  Projects &amp; case studies
+                </h1>
+                <p className="mt-4 max-w-[620px] text-[16px] leading-relaxed text-[#475467] sm:text-[17px]">
+                  E-commerce platforms, course marketplaces and corporate systems —
+                  built end-to-end with clean frontends, real admin tools and dependable deployment.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* ---------- Featured — Favonia Hobbies ---------- */}
-        <section className="bg-[#FDFBF4]">
+        <section>
           <div className="container-site py-16 lg:py-24">
-            {/* Intro row */}
-            <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-[640px]">
-                <span className="inline-flex items-center rounded-full border border-[#E5DFD0] bg-[#F4F1E9] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#475467]">
+            {/* Intro row — editorial split */}
+            <div className="reveal grid items-center gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#F0DFAC] bg-[#FFF6E0]/80 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#8A6A20]">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#C88A08]" />
                   Recent {favonia.category}
                 </span>
-                <h2 className="mt-4 text-[30px] font-extrabold tracking-tight text-ink sm:text-[38px]">
+                <h2 className="mt-5 text-[32px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[42px] lg:text-[48px]">
                   {favonia.name}
                 </h2>
-                <p className="mt-3 text-[16px] font-medium text-[#8A6A20]">{favonia.tagline}</p>
-                <p className="mt-4 text-[14.5px] leading-relaxed text-muted">{favonia.summary}</p>
+                <p className="mt-3 text-[17px] font-semibold text-[#8A6A20]">{favonia.tagline}</p>
+                <p className="mt-5 max-w-[560px] text-[15.5px] leading-[1.7] text-[#475467]">
+                  {favonia.summary}
+                </p>
               </div>
-              {/* Quick highlights */}
-              <dl className="flex shrink-0 flex-col gap-4 border-l border-[#EDE7D8] pl-6 lg:pl-8">
+              <dl className="flex flex-col gap-3">
                 {favonia.highlights.map((h) => (
-                  <div key={h.k}>
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-2">{h.k}</dt>
-                    <dd className="mt-0.5 text-[17px] font-extrabold text-ink">{h.v}</dd>
+                  <div
+                    key={h.k}
+                    className="flex items-center justify-between gap-4 rounded-[16px] border border-white/70 bg-white/45 px-5 py-4 shadow-[0_12px_26px_-24px_rgba(16,24,40,0.35)] backdrop-blur-md"
+                  >
+                    <dt className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#667085]">{h.k}</dt>
+                    <dd className="text-[20px] font-extrabold tracking-tight text-ink">{h.v}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            {/* Screenshot galleries */}
-            <div className="mt-12 flex flex-col gap-10">
-              <ShotGrid
-                title="Storefront"
-                shots={favonia.storefrontShots}
-                startIndex={1}
-                onOpen={setGalleryIndex}
-              />
-              <ShotGrid
-                title="Admin panel"
-                shots={favonia.adminShots}
-                startIndex={favonia.storefrontShots.length + 1}
-                onOpen={setGalleryIndex}
-              />
+            {/* Screenshot galleries — grouped tabs */}
+            <div className="mt-12">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#344054]">
+                  <span aria-hidden="true" className="inline-block h-px w-6 bg-[#C88A08]" />
+                  Screenshots
+                </h3>
+                <div
+                  className="flex items-center gap-1 rounded-full border border-white/70 bg-white/45 p-1 backdrop-blur-md"
+                  role="tablist"
+                  aria-label="Favonia screenshot groups"
+                >
+                  {GALLERY_GROUPS.map((g) => (
+                    <button
+                      key={g.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={shotTab === g.id}
+                      onClick={() => setShotTab(g.id)}
+                      className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[12.5px] font-semibold transition-all duration-300 ${
+                        shotTab === g.id
+                          ? 'bg-[#C88A08] text-white shadow-[0_6px_14px_-8px_rgba(200,138,8,0.7)]'
+                          : 'text-[#475467] hover:bg-white/70'
+                      }`}
+                    >
+                      {g.label}
+                      <span
+                        className={`text-[11px] font-bold ${
+                          shotTab === g.id ? 'text-white/80' : 'text-[#98A2B3]'
+                        }`}
+                      >
+                        {g.shots.length}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {GALLERY_GROUPS.map((g) => (
+                <div key={g.id} className={shotTab === g.id ? 'mt-6 block' : 'hidden'}>
+                  <ShotGrid
+                    title={g.label}
+                    shots={g.shots}
+                    offset={g.offset}
+                    onOpen={setGalleryIndex}
+                    showHeader={false}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Capability lists */}
@@ -263,11 +328,11 @@ export default function ProjectsPage() {
               ].map((col, ci) => (
                 <div
                   key={col.title}
-                  className="reveal rounded-[16px] border border-[#E9E4D8] bg-[#FDFBF6] p-6"
+                  className="reveal rounded-[18px] border border-white/70 bg-white/45 p-6 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md"
                   style={{ animationDelay: `${ci * 0.08}s` }}
                 >
-                  <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
-                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
+                  <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#344054]">
+                    <span aria-hidden="true" className="inline-block h-px w-6 bg-[#C88A08]" />
                     {col.title}
                   </h3>
                   <ul className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
@@ -285,17 +350,17 @@ export default function ProjectsPage() {
         </section>
 
         {/* ---------- Other projects ---------- */}
-        <section className="bg-white">
+        <section>
           <div className="container-site py-16 lg:py-24">
-            <div className="reveal max-w-[560px]">
-              <p className="section-label">
-                <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
+            <div className="reveal max-w-[620px]">
+              <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#C88A08]">
+                <span aria-hidden="true" className="inline-block h-px w-8 bg-[#C88A08]" />
                 More Work
               </p>
-              <h2 className="mt-4 text-[28px] font-extrabold tracking-tight text-ink sm:text-[34px]">
+              <h2 className="mt-4 text-[30px] font-extrabold tracking-tight text-ink sm:text-[38px]">
                 Other projects
               </h2>
-              <p className="mt-3 text-[14.5px] leading-relaxed text-muted">
+              <p className="mt-4 text-[15px] leading-relaxed text-[#475467]">
                 Marketplaces, corporate platforms and more — each with custom CMS or admin tooling.
                 Screenshots are being added as each project is prepared for the portfolio.
               </p>
@@ -305,16 +370,16 @@ export default function ProjectsPage() {
               {projects.map((p, i) => (
                 <article
                   key={p.name}
-                  className="reveal group relative flex flex-col overflow-hidden rounded-[18px] border border-[#E9E4D8] bg-white p-6 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D5CEC0] hover:shadow-[0_24px_45px_-18px_rgba(16,24,40,0.16)]"
+                  className="reveal group relative flex flex-col overflow-hidden rounded-[18px] border border-white/70 bg-white/45 p-6 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-white hover:bg-white/60 hover:shadow-[0_24px_46px_-26px_rgba(16,24,40,0.35)]"
                   style={{ animationDelay: `${i * 90}ms` }}
                 >
                   {/* top accent */}
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#98A2B3] to-transparent transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#C88A08] to-transparent transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
                   />
                   {/* Brand logo */}
-                  <div className="flex h-[88px] items-center justify-center overflow-hidden rounded-[14px] border border-[#EFEAE0] bg-[#FCFAF4] px-4 transition-colors duration-700 group-hover:border-[#E4D5AC]">
+                  <div className="flex h-[88px] items-center justify-center overflow-hidden rounded-[14px] border border-[#EFEAE0] bg-white/70 px-4 backdrop-blur-sm transition-colors duration-700 group-hover:border-[#E4D5AC]">
                     <img
                       src={p.logo}
                       alt={`${p.name} logo`}
@@ -326,27 +391,27 @@ export default function ProjectsPage() {
                   </div>
 
                   <div className="mt-5 flex items-start justify-between gap-3">
-                    <h3 className="text-[19px] font-bold tracking-tight text-ink transition-colors duration-500 group-hover:text-[#101828]">
+                    <h3 className="text-[19px] font-bold tracking-tight text-ink transition-colors duration-500 group-hover:text-[#A96F05]">
                       {p.name}
                     </h3>
-                    <span className="shrink-0 rounded-full border border-[#E5DFD0] bg-[#F4F1E9] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#475467]">
+                    <span className="shrink-0 rounded-full border border-[#E5DFD0] bg-white/70 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#475467] backdrop-blur-sm">
                       {p.category}
                     </span>
                   </div>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{p.blurb}</p>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-[#475467]">{p.blurb}</p>
 
                   <ul className="mt-4 flex flex-wrap gap-1.5">
                     {p.features.map((f) => (
                       <li
                         key={f}
-                        className="rounded-md border border-[#EEEAE0] bg-[#FCFAF4] px-2 py-1 text-[11px] font-medium text-[#667085]"
+                        className="rounded-md border border-[#EFE9DA] bg-white/70 px-2 py-1 text-[11px] font-medium text-[#475467] backdrop-blur-sm"
                       >
                         {f}
                       </li>
                     ))}
                   </ul>
 
-                  <p className="mt-auto flex items-center gap-1.5 pt-5 text-[11.5px] font-medium italic text-[#B9B4A6]">
+                  <p className="mt-auto flex items-center gap-1.5 pt-5 text-[11.5px] font-medium italic text-[#98A2B3]">
                     <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-[#D9C79A]" />
                     Screenshots coming soon
                   </p>
@@ -354,19 +419,28 @@ export default function ProjectsPage() {
               ))}
             </div>
 
-            {/* CTA to contact */}
-            <div className="reveal mt-16 flex flex-col items-start gap-5 rounded-[18px] bg-[linear-gradient(100deg,#FFF3D6_0%,#FFF8EA_55%,#FFF1D2_100%)] px-7 py-10 ring-1 ring-[#F0DFB8] sm:flex-row sm:items-center sm:justify-between sm:px-12">
-              <div>
-                <h3 className="text-[24px] font-extrabold tracking-tight text-ink sm:text-[28px]">
-                  Want something built like this?
-                </h3>
-                <p className="mt-1.5 text-[15px] text-[#8A6A20]">
-                  Let&apos;s talk about your project — from store to admin panel.
-                </p>
+            {/* CTA to contact — frosted, homepage style */}
+            <div className="reveal relative mt-16 flex flex-col items-center gap-7 overflow-hidden rounded-[18px] border border-white/70 bg-[linear-gradient(100deg,rgba(255,240,203,0.6)_0%,rgba(255,248,230,0.5)_55%,rgba(255,236,190,0.6)_100%)] px-7 py-10 shadow-[0_18px_44px_-30px_rgba(200,138,8,0.5)] backdrop-blur-md sm:gap-8 sm:px-12 lg:flex-row lg:items-center lg:justify-between">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-14 -top-20 h-48 w-48 rounded-full bg-[#C88A08]/[0.09] blur-2xl"
+              />
+              <div className="relative flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left lg:items-center lg:gap-5">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_6px_18px_-10px_rgba(200,138,8,0.5)] ring-1 ring-[#EFDBA9]">
+                  <Rocket className="h-6 w-6 text-[#C88A08]" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="text-[24px] font-extrabold tracking-tight text-ink sm:text-[28px]">
+                    Want something built like this?
+                  </h3>
+                  <p className="mt-1.5 text-[15px] text-[#8A6A20]">
+                    Let&apos;s talk about your project — from store to admin panel.
+                  </p>
+                </div>
               </div>
               <Link
                 to="/contact"
-                className="group inline-flex shrink-0 items-center gap-2 rounded-[9px] bg-[#C88A08] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_22px_-10px_rgba(200,138,8,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A96F05]"
+                className="group relative inline-flex shrink-0 items-center gap-2 rounded-[9px] bg-[#C88A08] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_8px_22px_-10px_rgba(200,138,8,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A96F05]"
               >
                 Start a Project
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
