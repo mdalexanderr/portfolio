@@ -212,7 +212,7 @@ export default function ProjectsPage() {
         {/* ---------- Page header — frosted band ---------- */}
         <section>
           <div className="container-site pt-[104px] lg:pt-[122px]">
-            <div className="reveal relative overflow-hidden rounded-[26px] border border-white/70 bg-white/45 px-6 py-7 shadow-[0_20px_50px_-32px_rgba(16,24,40,0.35)] backdrop-blur-md sm:px-10 lg:px-14 lg:py-10">
+            <div className="reveal relative overflow-hidden rounded-[24px] border border-white/70 bg-white/45 px-6 py-6 shadow-[0_18px_44px_-30px_rgba(16,24,40,0.32)] backdrop-blur-md sm:px-9 lg:px-12 lg:py-8">
               <span
                 aria-hidden="true"
                 className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#F2CE7A] via-[#C88A08] to-[#F2CE7A]"
@@ -221,15 +221,15 @@ export default function ProjectsPage() {
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-16 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(200,138,8,0.12),transparent_70%)] blur-2xl"
               />
-              <div className="relative max-w-[840px]">
-                <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#C88A08]">
-                  <span aria-hidden="true" className="inline-block h-px w-8 bg-[#C88A08]" />
+              <div className="relative max-w-[760px]">
+                <p className="flex items-center gap-3 text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#C88A08]">
+                  <span aria-hidden="true" className="inline-block h-px w-7 bg-[#C88A08]" />
                   Selected Work
                 </p>
-                <h1 className="mt-4 text-[34px] font-extrabold leading-[1.06] tracking-tight text-ink sm:text-[46px] lg:text-[54px]">
+                <h1 className="mt-3 text-[28px] font-extrabold leading-[1.06] tracking-tight text-ink sm:text-[38px] lg:text-[44px]">
                   Projects &amp; case studies
                 </h1>
-                <p className="mt-4 max-w-[620px] text-[16px] leading-relaxed text-[#475467] sm:text-[17px]">
+                <p className="mt-3 max-w-[560px] text-[15px] leading-relaxed text-[#475467] sm:text-[16px]">
                   E-commerce platforms, course marketplaces and corporate systems —
                   built end-to-end with clean frontends, real admin tools and dependable deployment.
                 </p>
@@ -449,7 +449,7 @@ export default function ProjectsPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer tone="warm" />
 
       {/* Lightbox gallery */}
       {galleryIndex !== null && (

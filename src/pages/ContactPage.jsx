@@ -81,27 +81,39 @@ export default function ContactPage() {
     <div className="app-bg relative min-h-screen">
       <Navbar />
       <main className="relative z-10">
-        {/* ---------- Page header ---------- */}
-        <section className="bg-white">
-          <div className="container-site pb-10 pt-[104px] lg:pb-12 lg:pt-[122px]">
-            <p className="reveal section-label">
-              <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
-              Get in Touch
-            </p>
-            <h1 className="reveal mt-3 max-w-[720px] text-[34px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[44px] lg:text-[52px]">
-              Let&apos;s build something{' '}
-              <span className="text-gradient">great</span> together
-            </h1>
-            <p className="reveal mt-4 max-w-[560px] text-[15.5px] leading-relaxed text-[#475467]">
-              Have a project in mind — a store, a platform or a complete web
-              product? I&apos;m one message away. Prefer WhatsApp for the
-              quickest reply.
-            </p>
+        {/* ---------- Page header — frosted band ---------- */}
+        <section>
+          <div className="container-site pt-[104px] lg:pt-[122px]">
+            <div className="reveal relative overflow-hidden rounded-[24px] border border-white/70 bg-white/45 px-6 py-6 shadow-[0_18px_44px_-30px_rgba(16,24,40,0.32)] backdrop-blur-md sm:px-9 lg:px-12 lg:py-8">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#F2CE7A] via-[#C88A08] to-[#F2CE7A]"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-16 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(200,138,8,0.12),transparent_70%)] blur-2xl"
+              />
+              <div className="relative max-w-[760px]">
+                <p className="flex items-center gap-3 text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#C88A08]">
+                  <span aria-hidden="true" className="inline-block h-px w-7 bg-[#C88A08]" />
+                  Get in Touch
+                </p>
+                <h1 className="mt-3 text-[28px] font-extrabold leading-[1.06] tracking-tight text-ink sm:text-[38px] lg:text-[44px]">
+                  Let&apos;s build something{' '}
+                  <span className="text-gradient">great</span> together
+                </h1>
+                <p className="mt-3 max-w-[560px] text-[15px] leading-relaxed text-[#475467] sm:text-[16px]">
+                  Have a project in mind — a store, a platform or a complete web
+                  product? I&apos;m one message away. Prefer WhatsApp for the
+                  quickest reply.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* ---------- Contact methods ---------- */}
-        <section className="bg-[#FDFBF4]">
+        <section>
           <div className="container-site py-16 lg:py-24">
             <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
               {/* Left — methods */}
@@ -109,7 +121,7 @@ export default function ContactPage() {
                 <h2 className="reveal text-[22px] font-extrabold tracking-tight text-ink sm:text-[26px]">
                   Ways to reach me
                 </h2>
-                <p className="reveal mt-2 max-w-[440px] text-[14.5px] leading-relaxed text-muted">
+                <p className="reveal mt-2 max-w-[440px] text-[14.5px] leading-relaxed text-[#475467]">
                   Pick whichever channel you prefer — every enquiry gets a
                   personal reply.
                 </p>
@@ -117,19 +129,19 @@ export default function ContactPage() {
                 <ul className="mt-8 flex flex-1 flex-col gap-4">
                   {METHODS.map((m, i) => {
                     const clickable = !!m.href
-                    const cardCls = `group flex w-full items-center justify-between gap-3 rounded-[16px] border border-[#E9E4D8] bg-white p-5 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    const cardCls = `group flex w-full items-center justify-between gap-3 rounded-[18px] border border-white/70 bg-white/45 p-5 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                       clickable
-                        ? 'hover:-translate-y-1 hover:border-[#D5CEC0] hover:shadow-[0_22px_44px_-18px_rgba(16,24,40,0.16)]'
+                        ? 'hover:-translate-y-1 hover:border-white hover:bg-white/60 hover:shadow-[0_24px_46px_-26px_rgba(16,24,40,0.35)]'
                         : 'cursor-default'
                     }`
                     const info = (
                       <span className="flex min-w-0 items-start gap-4">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border border-[#EFEAE0] bg-[#F6F3EB] text-[#667085]">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border border-[#EFE7D4] bg-white/70 text-[#667085] backdrop-blur-sm">
                           <m.icon className="h-5 w-5" aria-hidden="true" />
                         </span>
                         <span className="min-w-0">
                           <span className="flex flex-wrap items-center gap-2">
-                            <span className="text-[12.5px] font-bold uppercase tracking-[0.12em] text-[#98A2B3]">
+                            <span className="text-[12.5px] font-bold uppercase tracking-[0.12em] text-[#667085]">
                               {m.label}
                             </span>
                             {m.badge && (
@@ -141,7 +153,7 @@ export default function ContactPage() {
                           <span className="mt-0.5 block break-words text-[16.5px] font-bold text-ink">
                             {m.value}
                           </span>
-                          <span className="mt-0.5 block text-[13px] leading-snug text-[#98A2B3]">
+                          <span className="mt-0.5 block text-[13px] leading-snug text-[#475467]">
                             {m.hint}
                           </span>
                         </span>
@@ -183,7 +195,7 @@ export default function ContactPage() {
 
               {/* Right — CTA panel */}
               <div className="flex flex-col">
-                <div className="reveal relative overflow-hidden rounded-[20px] bg-[linear-gradient(150deg,#FFF3D6_0%,#FFF9EC_60%,#FFF1D2_100%)] p-7 ring-1 ring-[#F0DFB8] sm:p-10">
+                <div className="reveal relative overflow-hidden rounded-[22px] border border-white/70 bg-[linear-gradient(150deg,rgba(255,243,214,0.65)_0%,rgba(255,249,236,0.5)_60%,rgba(255,241,210,0.65)_100%)] p-7 shadow-[0_18px_44px_-30px_rgba(200,138,8,0.5)] backdrop-blur-md sm:p-10">
                   <div
                     className="pointer-events-none absolute -right-12 -top-14 h-56 w-56 rounded-full bg-[#C88A08]/[0.08] blur-2xl"
                     aria-hidden="true"
@@ -194,8 +206,8 @@ export default function ContactPage() {
                   />
 
                   <div className="relative">
-                    <p className="section-label">
-                      <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
+                    <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#C88A08]">
+                      <span aria-hidden="true" className="inline-block h-px w-8 bg-[#C88A08]" />
                       Start a conversation
                     </p>
                     <h2 className="mt-3 text-[24px] font-extrabold leading-tight tracking-tight text-ink sm:text-[30px]">
@@ -246,25 +258,25 @@ export default function ContactPage() {
                 </div>
 
                 {/* Elsewhere */}
-                <div className="reveal mt-6 rounded-[20px] border border-[#E9E4D8] bg-white p-7 sm:p-8">
-                  <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
-                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
+                <div className="reveal mt-6 rounded-[20px] border border-white/70 bg-white/45 p-7 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md sm:p-8">
+                  <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#344054]">
+                    <span aria-hidden="true" className="inline-block h-px w-6 bg-[#C88A08]" />
                     What happens next
                   </h3>
                   <ol className="mt-5 flex flex-col gap-5">
                     {STEPS.map((s, i) => (
                       <li key={s.n} className="flex items-start gap-4">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E3DED2] bg-[#F3F0E8] text-[13px] font-extrabold text-[#667085]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/80 bg-white/70 text-[13px] font-extrabold text-[#C88A08] backdrop-blur-sm">
                           {s.n}
                         </span>
                         <div>
                           <p className="flex items-center gap-1.5 text-[15px] font-bold text-ink">
                             {s.title}
                             {i < STEPS.length - 1 && (
-                              <Check className="h-4 w-4 text-[#98A2B3]" aria-hidden="true" />
+                              <Check className="h-4 w-4 text-[#C88A08]" aria-hidden="true" />
                             )}
                           </p>
-                          <p className="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.text}</p>
+                          <p className="mt-0.5 text-[13.5px] leading-relaxed text-[#475467]">{s.text}</p>
                         </div>
                       </li>
                     ))}
@@ -274,10 +286,10 @@ export default function ContactPage() {
             </div>
 
             {/* Bottom email band */}
-            <div className="reveal mt-14 flex flex-col items-start justify-between gap-5 rounded-[18px] border border-[#E9E4D8] bg-white px-7 py-9 sm:flex-row sm:items-center sm:px-10">
+            <div className="reveal mt-14 flex flex-col items-start justify-between gap-5 rounded-[20px] border border-white/70 bg-white/45 px-7 py-9 shadow-[0_14px_30px_-26px_rgba(16,24,40,0.3)] backdrop-blur-md sm:flex-row sm:items-center sm:px-10">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#EFEAE0] bg-[#F6F3EB]">
-                  <Send className="h-5 w-5 text-[#667085]" aria-hidden="true" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#EAD9A4] bg-white/70 backdrop-blur-sm">
+                  <Send className="h-5 w-5 text-[#C88A08]" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-[20px] font-extrabold tracking-tight text-ink">
@@ -311,7 +323,7 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer tone="warm" />
     </div>
   )
 }

@@ -32,9 +32,13 @@ const SOCIALS = [
   { icon: LinkedInIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/iamalexanderr/' },
 ]
 
-export default function Footer() {
+export default function Footer({ tone = 'frost' }) {
+  const bgCls =
+    tone === 'warm'
+      ? 'relative border-t border-[#E8DDBF]/70 bg-[linear-gradient(180deg,#FFFEFA_0%,#FBF7ED_100%)]'
+      : 'relative border-t border-white/70 bg-white/45 backdrop-blur-md'
   return (
-    <footer className="relative border-t border-white/70 bg-white/45 backdrop-blur-md">
+    <footer className={bgCls}>
       <div className="container-site py-10 lg:py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:gap-8">
           {/* Left — brand */}
