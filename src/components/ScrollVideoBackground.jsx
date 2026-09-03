@@ -26,12 +26,12 @@ import posterSrc from '../assets/video/ecosystem-poster.jpg'
  *     buffering), so scrolling can never wedge the video.
  */
 const SEEK_EPSILON = 0.035 // ~1 frame — don't seek for sub-frame differences
-const FINAL_FRAME_MARGIN = 0.01 // land just inside duration at the very bottom
+// Land a few frames before the true end: seeking *exactly* at the last
+// frame (duration − 0.01) can exceed a stream's real last seekable frame
+// and make some browsers reset the video to 0 (observed on the mobile
+// encode). ~0.1s ≈ 2–3 frames is visually identical to the final frame.
+const FINAL_FRAME_MARGIN = 0.1
 const SEEK_WATCHDOG_MS = 350 // release lock if the browser never fires `seeked`
-
-function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-}
 
 /** Lower-powered / mobile devices get the smaller 720p encode. */
 function useMobileSource() {
@@ -51,7 +51,6 @@ export default function ScrollVideoBackground() {
     const video = videoRef.current
     if (!video) return undefined
 
-    const reduceMotion = prefersReducedMotion()
     let destroyed = false
 
     // Duration is unknown until the metadata loads — never derive a seek
@@ -63,6 +62,7 @@ export default function ScrollVideoBackground() {
     let seekWatchdog = 0
     let logCounter = 0
     let currentSrc = ''
+    let primed = false
 
     const measureMaxScroll = () => {
       const doc = document.documentElement
@@ -77,7 +77,7 @@ export default function ScrollVideoBackground() {
     // Scroll event → schedule ONE rAF. Nothing else happens here, so the
     // handler stays extremely lightweight regardless of scroll frequency.
     const scheduleProcess = () => {
-      if (rafId || !duration || reduceMotion) return
+      if (rafId || !duration) return
       rafId = window.requestAnimationFrame(processTarget)
     }
 
@@ -158,6 +158,33 @@ export default function ScrollVideoBackground() {
     const onLoadedData = () => {
       // First frame is decodable — swap the poster for real footage.
       if (!destroyed) setPosterVisible(false)
+      primeOnce()
+    }
+
+    /**
+     * One quiet, muted play→pause AFTER the first frame is ready. Mobile
+     * browsers (esp. iOS) won't fetch frames of a PAUSED video until it has
+     * "played" once — this starts the download, then immediately pauses so
+     * scroll-scrubbing owns the timeline. It runs at most once per loaded
+     * source and only while the video is at rest, so it can never interrupt
+     * or glitch an active scroll-seek.
+     */
+    const primeOnce = () => {
+      if (primed || destroyed || isSeeking || video.seeking) return
+      if (video.readyState < 2 || !video.paused) return
+      primed = true
+      try {
+        const p = video.play()
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            if (!destroyed) video.pause()
+          }).catch(() => {
+            /* muted autoplay refused — the video still works once the user scrolls */
+          })
+        }
+      } catch {
+        /* ignore */
+      }
     }
 
     const onScroll = () => scheduleProcess()
@@ -168,10 +195,11 @@ export default function ScrollVideoBackground() {
       // Re-pick the encode when the device profile changes (e.g. a phone
       // rotated, or a tablet/desktop window crossed the mobile breakpoint).
       const next = pickSource()
-      if (!reduceMotion && next !== currentSrc) {
+      if (next !== currentSrc) {
         currentSrc = next
         duration = 0 // wait for the new media's metadata
         isSeeking = false
+        primed = false // new source needs its own prime
         window.clearTimeout(seekWatchdog)
         video.src = next
         video.load()
@@ -195,15 +223,12 @@ export default function ScrollVideoBackground() {
       }
     }
 
-    // Reduced motion: show the static poster/first frame only — skip loading
-    // the heavy video entirely.
-    if (!reduceMotion) {
-      currentSrc = pickSource()
-      video.src = currentSrc
-      video.load()
-      video.addEventListener('loadedmetadata', onLoadedMetadata)
-      video.addEventListener('loadeddata', onLoadedData)
-    }
+    // Load the encode for this device (mobile gets the lighter 720p file).
+    currentSrc = pickSource()
+    video.src = currentSrc
+    video.load()
+    video.addEventListener('loadedmetadata', onLoadedMetadata)
+    video.addEventListener('loadeddata', onLoadedData)
 
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize, { passive: true })
