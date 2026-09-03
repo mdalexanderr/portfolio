@@ -8,7 +8,7 @@ import Button from './ui/Button'
  */
 export default function ProjectCTA() {
   return (
-    <div className="reveal relative overflow-hidden rounded-[18px] bg-[linear-gradient(100deg,#FFF3D6_0%,#FFF8EA_55%,#FFF1D2_100%)] px-7 py-10 ring-1 ring-[#F0DFB8] sm:px-12 lg:px-16">
+    <div className="reveal relative overflow-hidden rounded-[18px] border border-white/70 bg-[linear-gradient(100deg,rgba(255,240,203,0.6)_0%,rgba(255,248,230,0.5)_55%,rgba(255,236,190,0.6)_100%)] px-7 py-10 shadow-[0_18px_44px_-30px_rgba(200,138,8,0.5)] backdrop-blur-md sm:px-12 lg:px-16">
       {/* Decorative soft circles */}
       <div className="pointer-events-none absolute -right-10 -top-16 h-56 w-56 rounded-full bg-[#C88A08]/[0.06] blur-2xl" aria-hidden="true" />
       <div className="pointer-events-none absolute -bottom-20 left-1/4 h-48 w-48 rounded-full bg-[#C88A08]/[0.05] blur-2xl" aria-hidden="true" />

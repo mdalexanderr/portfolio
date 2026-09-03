@@ -192,7 +192,8 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
-/* Section label — small uppercase label (neutral, kept subtle) */
+/* Section label — small uppercase label. Kept on the darker side so it
+   stays legible over the transparent video-backed sections. */
 .section-label {
   display: inline-flex;
   align-items: center;
@@ -201,7 +202,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: #475467;
 }
 
 /* Scroll reveal */
@@ -236,150 +237,10 @@ body {
 }
 
 /* ============================================================
-   HERO — mobile organisation (matches the supplied mobile CSS)
-   Mobile:  content → mockup → technologies (stacked, with gold
-   decorations). md–lg keeps the earlier stacked arrangement and
-   lg keeps the original two-column desktop layout.
+   HERO — centered single column over the scroll-video layer.
+   All composition is handled with Tailwind utilities in
+   Hero.jsx (badge → headline → description → CTAs → tech row).
    ============================================================ */
-
-/* Faint warm radial wash, mobile only */
-.hero-mobile-bg {
-  background: radial-gradient(
-    circle at 92% 26%,
-    rgba(220, 170, 60, 0.1),
-    transparent 24%
-  );
-}
-
-/* One grid whose areas reorder responsively */
-.hero-grid {
-  display: grid;
-  grid-template-areas:
-    "l"
-    "m"
-    "t";
-}
-/* Allow grid cells to shrink — prevents wide mockup content from
-   overflowing and being clipped on the right on small screens */
-.hero-grid > * {
-  min-width: 0;
-}
-.hgl {
-  grid-area: l;
-}
-.hgm {
-  grid-area: m;
-}
-.hgt {
-  grid-area: t;
-}
-
-/* ---------- Mobile (< 48rem): badge → title → desc → CTAs → mockup → tech ---------- */
-.hgm {
-  margin-top: 34px;
-  padding-bottom: 68px; /* room for the phone that hangs below the laptop */
-}
-.hgt {
-  margin-top: 24px;
-}
-
-/* Hide scrollbars on the horizontal tech strip */
-.hero-tech-list {
-  scrollbar-width: none;
-}
-.hero-tech-list::-webkit-scrollbar {
-  display: none;
-}
-
-/* ---------- Mobile-only decorations ---------- */
-.hero-dot-pattern {
-  position: absolute;
-  width: 52px;
-  height: 52px;
-  opacity: 0.35;
-  background-image: radial-gradient(
-    circle,
-    rgba(200, 138, 10, 0.4) 1.5px,
-    transparent 1.5px
-  );
-  background-size: 10px 10px;
-  pointer-events: none;
-}
-.hero-dot-1 {
-  top: 150px;
-  right: 12px;
-}
-.hero-dot-2 {
-  bottom: 60px;
-  left: 4px;
-}
-.hero-circle {
-  position: absolute;
-  width: 210px;
-  height: 210px;
-  right: -90px;
-  bottom: 20px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(221, 174, 71, 0.13),
-    rgba(221, 174, 71, 0)
-  );
-  pointer-events: none;
-}
-
-/* ---------- Tablet (48rem → 64rem): keep earlier stacked order ---------- */
-@media (width >= 48rem) and (width < 64rem) {
-  .hero-mobile-bg {
-    background: transparent;
-  }
-  .hero-deco {
-    display: none;
-  }
-  .hero-grid {
-    grid-template-areas:
-      "l"
-      "t"
-      "m";
-  }
-  .hgm {
-    margin-top: 40px;
-    padding-bottom: 0;
-  }
-  .hgt {
-    margin-top: 32px;
-    border-top: 1px solid var(--color-line);
-    padding-top: 20px;
-  }
-}
-
-/* ---------- Desktop (≥ 64rem): two columns, tech under the heading ---------- */
-@media (width >= 64rem) {
-  .hero-mobile-bg {
-    background: transparent;
-  }
-  .hero-deco {
-    display: none;
-  }
-  .hero-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "l m"
-      "t m";
-    column-gap: 2rem;
-    align-items: center;
-  }
-  .hgm {
-    margin-top: 0;
-    padding-bottom: 0;
-    align-self: center;
-  }
-  .hgt {
-    margin-top: 28px;
-    border-top: 1px solid var(--color-line);
-    padding-top: 20px;
-  }
-}
 
 /* ============================================================
    TESTIMONIALS — auto-sliding marquee
@@ -466,5 +327,69 @@ footer[id] {
   .lbFade,
   .lbZoom {
     animation: none !important;
+  }
+}
+
+/* ============================================================
+   SCROLL-CONTROLLED VIDEO BACKGROUND
+   A fixed, full-viewport layer that sits behind every section.
+   Its playback position is driven entirely by page scroll.
+   ============================================================ */
+.scroll-video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* below content (z-10), above page/ambient washes */
+  overflow: hidden;
+  pointer-events: none; /* the site stays fully interactive */
+  background: var(--color-base);
+}
+
+.scroll-video-bg video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* preserve 16:9 composition, no distortion */
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Static first-frame poster shown while the video metadata loads */
+.scroll-video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-video-poster.is-hidden {
+  opacity: 0;
+}
+
+/* Soft warm veil that keeps the portfolio typography readable without
+   darkening the bright cream/gold footage or hiding it entirely. */
+.scroll-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 254, 252, 0.88) 0%,
+    rgba(255, 253, 247, 0.72) 24%,
+    rgba(255, 253, 247, 0.64) 50%,
+    rgba(255, 253, 247, 0.72) 76%,
+    rgba(255, 254, 252, 0.9) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-video-bg video {
+    opacity: 0.9;
   }
 }

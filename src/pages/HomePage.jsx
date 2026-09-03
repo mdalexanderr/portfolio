@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero/Hero'
+import IntroBlock from '../components/Hero/IntroBlock'
 import Stats from '../components/Stats'
 import AboutMe from '../components/AboutMe'
 import Services from '../components/Services'
 import FeaturedProjects from '../components/FeaturedProjects'
 import Technologies from '../components/Technologies'
 import Testimonials from '../components/Testimonials'
+import ScrollVideoBackground from '../components/ScrollVideoBackground'
 import Footer from '../components/Footer'
 
 export default function HomePage() {
@@ -34,17 +36,19 @@ export default function HomePage() {
 
   return (
     <div className="app-bg relative min-h-screen">
+      <ScrollVideoBackground />
       <Navbar />
       <main className="relative z-10">
         <Hero />
         <Stats />
+        <IntroBlock />
         <Services />
         <FeaturedProjects />
         <AboutMe />
         <Technologies />
         <Testimonials />
+        <Footer />
       </main>
-      <Footer />
     </div>
   )
 }

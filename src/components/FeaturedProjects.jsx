@@ -69,7 +69,7 @@ export default function FeaturedProjects() {
         {PROJECTS.map((project, i) => (
           <article
             key={project.name}
-            className="reveal group relative flex flex-col overflow-hidden rounded-[16px] border border-[#EAECF0] bg-white shadow-[0_2px_12px_rgba(16,24,40,0.03)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D8D2C4] hover:shadow-[0_26px_50px_-20px_rgba(16,24,40,0.2)]"
+            className="reveal group relative flex flex-col overflow-hidden rounded-[18px] border border-white/70 bg-white/45 shadow-[0_14px_34px_-26px_rgba(16,24,40,0.28)] backdrop-blur-md transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-white hover:bg-white/60 hover:shadow-[0_26px_52px_-26px_rgba(16,24,40,0.35)]"
             style={{ animationDelay: `${i * 110}ms` }}
           >
             {/* ------- Media panel (photo or brand mark) ------- */}
@@ -133,7 +133,7 @@ export default function FeaturedProjects() {
               </h3>
 
               {/* Outcome — the business problem this project solved */}
-              <div className="mt-3 flex items-start gap-2.5 rounded-[10px] border border-[#EFEAE0] bg-[#F9F7F1] px-3 py-2.5">
+              <div className="mt-3 flex items-start gap-2.5 rounded-[10px] border border-[#EFEAE0] bg-white/55 px-3 py-2.5 backdrop-blur-sm">
                 <TrendingUp className="mt-0.5 h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
                 <p className="text-[13px] font-semibold leading-snug text-[#344054]">{project.lead}</p>
               </div>

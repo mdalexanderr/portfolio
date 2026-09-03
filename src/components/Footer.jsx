@@ -24,7 +24,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[#EAECF0] bg-[#FDFBF4]">
+    <footer className="relative border-t border-white/70 bg-white/45 backdrop-blur-md">
       <div className="container-site py-10 lg:py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:gap-8">
           {/* Left — brand */}
@@ -33,7 +33,7 @@ export default function Footer() {
               <span className="text-gradient">alex</span>
               <span className="text-ink">web</span>
             </Link>
-            <p className="max-w-[280px] text-[14px] leading-relaxed text-muted">
+            <p className="max-w-[280px] text-[14px] leading-relaxed text-[#475467]">
               Full-stack developer building high-performance websites,
               e-commerce platforms, and custom web applications for growing
               businesses.
@@ -61,7 +61,7 @@ export default function Footer() {
             <ul className="mt-4 flex flex-col gap-2.5">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link to={link.to} className="text-[14px] text-[#475467] transition-colors hover:text-[#C88A08]">
+                  <Link to={link.to} className="text-[14px] text-[#344054] transition-colors hover:text-[#C88A08]">
                     {link.label}
                   </Link>
                 </li>
@@ -74,7 +74,7 @@ export default function Footer() {
             <h3 className="text-[14px] font-bold uppercase tracking-wider text-ink">Services</h3>
             <ul className="mt-4 flex flex-col gap-2.5">
               {SERVICE_LINKS.map((s) => (
-                <li key={s} className="text-[14px] text-[#475467]">
+                <li key={s} className="text-[14px] text-[#344054]">
                   {s}
                 </li>
               ))}
@@ -86,32 +86,32 @@ export default function Footer() {
             <h3 className="text-[14px] font-bold uppercase tracking-wider text-ink">Contact Info</h3>
             <ul className="mt-4 flex flex-col gap-3">
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
+                <Mail className="h-4 w-4 shrink-0 text-[#667085]" aria-hidden="true" />
                 <a
                   href={GMAIL_URL}
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`Email ${EMAIL} (opens Gmail)`}
-                  className="text-[14px] text-[#475467] underline-offset-2 transition-colors hover:text-[#C88A08] hover:underline"
+                  className="text-[14px] text-[#344054] underline-offset-2 transition-colors hover:text-[#C88A08] hover:underline"
                 >
                   {EMAIL}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MessageCircle className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
+                <MessageCircle className="h-4 w-4 shrink-0 text-[#667085]" aria-hidden="true" />
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`WhatsApp ${PHONE_DISPLAY} (opens WhatsApp)`}
-                  className="text-[14px] text-[#475467] underline-offset-2 transition-colors hover:text-[#C88A08] hover:underline"
+                  className="text-[14px] text-[#344054] underline-offset-2 transition-colors hover:text-[#C88A08] hover:underline"
                 >
                   {PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
-                <span className="text-[14px] text-[#475467]">{LOCATION}</span>
+                <MapPin className="h-4 w-4 shrink-0 text-[#667085]" aria-hidden="true" />
+                <span className="text-[14px] text-[#344054]">{LOCATION}</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="relative flex h-2.5 w-2.5">
@@ -126,8 +126,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-9 flex flex-col items-center justify-between gap-3 border-t border-[#EAECF0] pt-5 sm:flex-row">
-          <p className="text-[13px] text-[#98A2B3]">© 2026 md.alexander. All rights reserved.</p>
-          <p className="flex items-center gap-1.5 text-[13px] text-[#98A2B3]">
+          <p className="text-[13px] text-[#475467]">© 2026 md.alexander. All rights reserved.</p>
+          <p className="flex items-center gap-1.5 text-[13px] text-[#475467]">
             Designed &amp; Developed with <span className="text-rose-500" aria-hidden="true">♥</span>
           </p>
         </div>

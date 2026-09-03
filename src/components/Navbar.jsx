@@ -93,8 +93,10 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 backdrop-blur-md transition-[background-color,box-shadow] duration-300 ${
-        compact ? 'bg-white/95 shadow-[0_1px_0_rgba(16,24,40,0.05)]' : 'bg-white/85'
-      } border-b border-[#EAECF0]`}
+        compact
+          ? 'bg-white/70 shadow-[0_1px_0_rgba(16,24,40,0.05)]'
+          : 'bg-white/45'
+      } border-b border-white/70`}
     >
       <nav
         className={`container-site flex items-center justify-between gap-4 transition-[height] duration-300 ease-out will-change-[height] ${
@@ -168,7 +170,7 @@ export default function Navbar() {
         id="mobile-menu"
         inert={!open}
         aria-hidden={!open}
-        className={`lg:hidden overflow-hidden border-t border-[#EAECF0] bg-white backdrop-blur-xl transition-[max-height] duration-300 ease-out ${
+        className={`lg:hidden overflow-hidden border-t border-white/70 bg-white/55 backdrop-blur-xl transition-[max-height] duration-300 ease-out ${
           open ? 'max-h-[420px]' : 'max-h-0 border-t-0'
         }`}
       >

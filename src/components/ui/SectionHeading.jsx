@@ -20,7 +20,7 @@ export default function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted">{subtitle}</p>
+        <p className="max-w-xl text-[15px] leading-relaxed text-[#475467]">{subtitle}</p>
       )}
     </div>
   )

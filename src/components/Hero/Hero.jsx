@@ -1,7 +1,4 @@
-import { Code2, Send } from 'lucide-react'
-import Button from '../ui/Button'
 import TechLogo from '../tech/TechLogo'
-import ShopVerseMockup from './ShopVerseMockup'
 
 const TECH_ROW = [
   { name: 'Python', logo: 'python' },
@@ -11,68 +8,42 @@ const TECH_ROW = [
   { name: 'PostgreSQL', logo: 'postgresql' },
 ]
 
+/**
+ * Hero — a clean, full-viewport cinematic opener over the scroll-video
+ * background. The intro statement lives below the trust/stats bar, so
+ * this section stays minimal: a themed signature lockup (bold name +
+ * small normal tagline) sits above the tech stack, both anchored to
+ * the bottom-right of the frame.
+ */
 export default function Hero() {
   return (
-    <section id="home" className="hero-mobile-bg relative overflow-hidden pt-[100px] pb-[44px] lg:pt-[124px] lg:pb-[60px]">
-      {/* Mobile-only decorative accents */}
-      <span aria-hidden="true" className="hero-deco hero-dot-pattern hero-dot-1" />
-      <span aria-hidden="true" className="hero-deco hero-dot-pattern hero-dot-2" />
-      <span aria-hidden="true" className="hero-deco hero-circle" />
-
-      <div className="container-site">
-        <div className="hero-grid">
-          {/* ------- Main content — badge / headline / description / CTAs ------- */}
-          <div className="hgl max-w-[560px]">
-            {/* Badge */}
-            <div className="reveal inline-flex items-center gap-2 rounded-full border border-[#EDD9A6] bg-[#FFF6E0] px-4 py-2 text-[13px] font-medium text-[#101828]">
-              <Code2 className="h-4 w-4 text-[#667085]" aria-hidden="true" />
-              <span className="opacity-60">&lt;/&gt;</span>
-              Full Stack Web Developer
-            </div>
-
-            {/* Headline */}
-            <h1 className="reveal mt-5 text-[25px] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-[38px] lg:text-[46px]" style={{ animationDelay: '0.08s' }}>
-              <span className="block">
-                I Build <span className="text-gradient">High-Performance</span>
-              </span>
-              <span className="block">Websites That Drive</span>
-              <span className="block">Business Growth</span>
-            </h1>
-
-            {/* Description */}
-            <p className="reveal mt-5 max-w-[480px] text-[16px] leading-[1.55] text-[#475467]" style={{ animationDelay: '0.16s' }}>
-              I design and develop high-performance websites, e-commerce
-              platforms, and custom web applications built for real-world
-              business needs.
-            </p>
-
-            {/* Buttons */}
-            <div className="reveal mt-6 flex flex-wrap items-center gap-4" style={{ animationDelay: '0.24s' }}>
-              <Button href="#portfolio">View My Work</Button>
-              <Button to="/contact" variant="secondary" icon={false}>
-                Contact Me
-                <Send className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            </div>
-          </div>
-
-          {/* ------- ShopVerse mockup ------- */}
-          <div className="hgm reveal relative" style={{ animationDelay: '0.2s' }}>
-            <ShopVerseMockup />
-          </div>
-
-          {/* ------- Technologies (below the mockup on mobile, bottom-left on desktop) ------- */}
-          <div className="hgt reveal" style={{ animationDelay: '0.32s' }}>
-            <ul className="hero-tech-list flex items-center gap-x-6 gap-y-3 overflow-x-auto md:flex-wrap md:overflow-visible">
-              {TECH_ROW.map((tech) => (
-                <li key={tech.name} className="flex shrink-0 items-center gap-2">
-                  <TechLogo name={tech.logo} className="h-[18px] w-[18px]" />
-                  <span className="text-[13px] font-medium text-[#475467]">{tech.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <section id="home" className="relative overflow-hidden">
+      <div className="container-site flex min-h-[calc(100svh_-_205px)] flex-col justify-end gap-9 pt-[110px] pb-[30px] lg:min-h-[calc(100svh_-_132px)] lg:gap-10 lg:pt-[140px] lg:pb-[34px]">
+        {/* ------- Signature lockup (above the tech row) ------- */}
+        <div className="ml-auto flex flex-col items-end">
+          <span
+            aria-hidden="true"
+            className="mb-3 block h-[3px] w-10 rounded-full bg-gradient-to-r from-[#F2CE7A] to-[#C88A08]"
+          />
+          <p className="text-[26px] font-extrabold leading-none tracking-tight text-[#101828] sm:text-[32px] lg:text-[36px]">
+            MD Alexander
+          </p>
+          <p className="mt-2 text-[13px] font-normal tracking-[0.06em] text-[#475467] sm:text-[14px]">
+            Full Stack Web Developer
+          </p>
         </div>
+
+        {/* ------- Tech stack ------- */}
+        <ul className="ml-auto flex flex-wrap items-center justify-end gap-x-7 gap-y-3">
+          {TECH_ROW.map((tech) => (
+            <li key={tech.name} className="flex items-center gap-2">
+              <TechLogo name={tech.logo} className="h-[18px] w-[18px]" />
+              <span className="text-[13px] font-medium text-[#344054]">
+                {tech.name}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

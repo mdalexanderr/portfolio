@@ -10,7 +10,7 @@ const STATS = [
 export default function Stats() {
   return (
     <section aria-label="Key statistics" className="container-site mt-[-10px] pb-4">
-      <div className="reveal card grid grid-cols-2 divide-[#EAECF0] overflow-hidden rounded-[16px] px-2 py-4 md:grid-cols-4 md:divide-x md:py-0">
+      <div className="reveal grid grid-cols-2 divide-[#EAECF0]/80 overflow-hidden rounded-[18px] border border-white/70 bg-white/45 px-2 py-4 shadow-[0_14px_34px_-26px_rgba(16,24,40,0.28)] backdrop-blur-md md:grid-cols-4 md:divide-x md:py-0">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex items-center gap-3 px-3 py-3 sm:px-5 md:py-5">
             <div className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${stat.bg}`}>

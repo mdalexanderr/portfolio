@@ -23,6 +23,10 @@ export default function Button({
       'bg-[#C88A08] text-white shadow-[0_8px_22px_-10px_rgba(200,138,8,0.55)] hover:bg-[#A96F05] hover:shadow-[0_12px_28px_-10px_rgba(200,138,8,0.6)] hover:-translate-y-0.5',
     secondary:
       'border border-[#E4D7B0] bg-white text-[#101828] hover:border-[#C88A08] hover:bg-[#FFFBF2] hover:-translate-y-0.5',
+    'frost-gold':
+      'border border-[#F5DC9B]/80 bg-[#C88A08]/75 text-white shadow-[0_10px_24px_-16px_rgba(200,138,8,0.7)] backdrop-blur-md hover:-translate-y-0.5 hover:border-[#F7E3AC] hover:bg-[#C88A08]/90',
+    'frost-white':
+      'border border-white/70 bg-white/45 text-[#101828] shadow-[0_10px_24px_-18px_rgba(16,24,40,0.35)] backdrop-blur-md hover:-translate-y-0.5 hover:border-white hover:bg-white/75',
   }
   const cls = `${base} ${styles[variant]} ${className}`
   const content = (

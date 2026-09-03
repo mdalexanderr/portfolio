@@ -49,7 +49,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#FDFBF4]">
+    <section id="services">
       <div className="container-site py-[88px] lg:py-[104px]">
         <SectionHeading
           label="What I Do"
@@ -61,7 +61,7 @@ export default function Services() {
         {SERVICES.map((service) => (
           <article
             key={service.title}
-            className="reveal card group relative flex flex-col gap-4 overflow-hidden p-5 transition-all duration-1000! ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D8D2C4] hover:shadow-[0_16px_36px_-14px_rgba(16,24,40,0.12)]"
+            className="reveal group relative flex flex-col gap-4 overflow-hidden rounded-[18px] border border-white/70 bg-white/45 p-5 shadow-[0_14px_34px_-26px_rgba(16,24,40,0.28)] backdrop-blur-md transition-all duration-1000! ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-white hover:bg-white/60 hover:shadow-[0_22px_46px_-26px_rgba(16,24,40,0.35)]"
           >
             {/* Sweeping neutral top accent */}
             <span

@@ -45,7 +45,7 @@ function Stars() {
 
 function TestimonialCard({ t }) {
   return (
-    <figure className="relative flex w-[300px] shrink-0 flex-col gap-3 rounded-[16px] border border-[#EAECF0] bg-white p-5 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#D8D2C4] sm:w-[340px] lg:w-[360px]">
+    <figure className="relative flex w-[300px] shrink-0 flex-col gap-3 rounded-[18px] border border-white/80 bg-white/60 p-5 shadow-[0_12px_28px_-24px_rgba(16,24,40,0.3)] backdrop-blur-md transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-white hover:bg-white/75 sm:w-[340px] lg:w-[360px]">
       <Quote
         className="absolute right-4 top-4 h-5 w-5 text-[#101828]/[0.07]"
         aria-hidden="true"

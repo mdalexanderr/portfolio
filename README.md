@@ -29,9 +29,9 @@ src/
   index.css                # design tokens, base styles, utilities
   components/
     Navbar.jsx             # fixed nav + mobile menu
-    Hero/Hero.jsx          # hero two-column layout
-    Hero/ShopVerseMockup.jsx  # laptop + phone ShopVerse mockup (pure CSS)
-    Stats.jsx              # 4-stat bar
+    Hero/Hero.jsx          # clean full-viewport hero: tech stack (left) + signature (right)
+    Hero/IntroBlock.jsx    # intro statement (badge/headline/CTAs) placed under the stats bar
+    Stats.jsx              # 4-stat trust bar
     Services.jsx           # 6 service cards
     FeaturedProjects.jsx   # 3 project cards
     Technologies.jsx       # tech pills
