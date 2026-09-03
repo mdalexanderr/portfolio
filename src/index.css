@@ -125,22 +125,44 @@ body {
 }
 
 /* ---------------- Reusable utilities ---------------- */
+/* Fluid site container with a proper, per-screen safe area.
+   Phones keep a modest content-first gutter, tablets a moderate one,
+   and desktops a generous gutter that scales with the screen. On large
+   desktop monitors the side margin grows proportionally and then
+   plateaus at a ceiling, so very wide/ultra-wide displays fill
+   naturally instead of showing huge empty side areas. */
 .container-site {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 48px;
+}
+
+@media (width >= 80rem) {
+  .container-site {
+    /* Proportional one-side safe zone — doubled vs the original.
+       It keeps growing with the screen until a generous ceiling, so
+       very wide monitors never show huge empty side areas. */
+    --safe-x: clamp(3.5rem, 9.5vw, 13rem);
+    /* Scale up to fill bigger monitors smoothly. Never narrower than
+       the original 1200px column on smaller laptops. No hard content
+       cap: once the safe margin reaches its ceiling the content keeps
+       filling wider displays, keeping the layout balanced. */
+    max-width: max(1200px, calc(100% - var(--safe-x) * 2));
+  }
 }
 
 @media (width < 64rem) {
   .container-site {
-    padding-inline: 20px;
+    /* Tablet — natural, moderate gutter */
+    padding-inline: 32px;
   }
 }
 
 @media (width < 40rem) {
   .container-site {
-    padding-inline: 16px;
+    /* Phone — modest, content-first gutter */
+    padding-inline: 20px;
   }
 }
 
