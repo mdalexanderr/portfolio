@@ -29,7 +29,16 @@ export default function Hero() {
             MD Alexander
           </p>
           <p className="mt-2 text-[13px] font-normal tracking-[0.06em] text-[#475467] sm:text-[14px]">
-            Full Stack Web Developer
+            FULL STACK WEB DEVELOPER{' '}
+            <span aria-hidden="true" className="text-[#C88A08]">·</span> COO @{' '}
+            <a
+              href="https://www.jupy.llc/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-semibold text-[#C88A08] underline-offset-4 transition-colors hover:text-[#A96F05] hover:underline"
+            >
+              JUPY
+            </a>
           </p>
         </div>
 
