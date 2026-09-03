@@ -113,8 +113,8 @@ function ShotGrid({ title, shots, startIndex = 1, onOpen }) {
   return (
     <div className="reveal">
       <div className="flex items-center justify-between gap-4">
-        <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#B47A05]">
-          <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D9B45C]" />
+        <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
+          <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
           {title}
         </h3>
         <span className="text-[12px] font-medium text-muted-2">
@@ -200,7 +200,7 @@ export default function ProjectsPage() {
         <section className="bg-white">
           <div className="container-site pb-10 pt-[104px] lg:pb-12 lg:pt-[122px]">
             <p className="reveal section-label">
-              <span aria-hidden="true" className="h-px w-6 bg-[#C88A08]" />
+              <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
               Selected Work
             </p>
             <h1 className="reveal mt-3 max-w-[720px] text-[34px] font-extrabold leading-[1.1] tracking-tight text-ink sm:text-[46px] lg:text-[54px]">
@@ -219,7 +219,7 @@ export default function ProjectsPage() {
             {/* Intro row */}
             <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-[640px]">
-                <span className="inline-flex items-center rounded-full border border-[#EDD9A6] bg-[#FFF6E0] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#A96F05]">
+                <span className="inline-flex items-center rounded-full border border-[#E5DFD0] bg-[#F4F1E9] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#475467]">
                   Recent {favonia.category}
                 </span>
                 <h2 className="mt-4 text-[30px] font-extrabold tracking-tight text-ink sm:text-[38px]">
@@ -266,14 +266,14 @@ export default function ProjectsPage() {
                   className="reveal rounded-[16px] border border-[#E9E4D8] bg-[#FDFBF6] p-6"
                   style={{ animationDelay: `${ci * 0.08}s` }}
                 >
-                  <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#B47A05]">
-                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D9B45C]" />
+                  <h3 className="flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
+                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
                     {col.title}
                   </h3>
                   <ul className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
                     {col.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-[13.5px] leading-snug text-[#475467]">
-                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C88A08]" aria-hidden="true" />
+                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#98A2B3]" aria-hidden="true" />
                         {item}
                       </li>
                     ))}
@@ -289,7 +289,7 @@ export default function ProjectsPage() {
           <div className="container-site py-16 lg:py-24">
             <div className="reveal max-w-[560px]">
               <p className="section-label">
-                <span aria-hidden="true" className="h-px w-6 bg-[#C88A08]" />
+                <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
                 More Work
               </p>
               <h2 className="mt-4 text-[28px] font-extrabold tracking-tight text-ink sm:text-[34px]">
@@ -305,13 +305,13 @@ export default function ProjectsPage() {
               {projects.map((p, i) => (
                 <article
                   key={p.name}
-                  className="reveal group relative flex flex-col overflow-hidden rounded-[18px] border border-[#E9E4D8] bg-white p-6 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#E0C58A] hover:shadow-[0_24px_45px_-18px_rgba(16,24,40,0.16)]"
+                  className="reveal group relative flex flex-col overflow-hidden rounded-[18px] border border-[#E9E4D8] bg-white p-6 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D5CEC0] hover:shadow-[0_24px_45px_-18px_rgba(16,24,40,0.16)]"
                   style={{ animationDelay: `${i * 90}ms` }}
                 >
                   {/* top accent */}
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#C88A08] to-[#E7C87B] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#98A2B3] to-transparent transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
                   />
                   {/* Brand logo */}
                   <div className="flex h-[88px] items-center justify-center overflow-hidden rounded-[14px] border border-[#EFEAE0] bg-[#FCFAF4] px-4 transition-colors duration-700 group-hover:border-[#E4D5AC]">
@@ -326,10 +326,10 @@ export default function ProjectsPage() {
                   </div>
 
                   <div className="mt-5 flex items-start justify-between gap-3">
-                    <h3 className="text-[19px] font-bold tracking-tight text-ink transition-colors duration-500 group-hover:text-[#A96F05]">
+                    <h3 className="text-[19px] font-bold tracking-tight text-ink transition-colors duration-500 group-hover:text-[#101828]">
                       {p.name}
                     </h3>
-                    <span className="shrink-0 rounded-full border border-[#F0DFB8] bg-[#FFF8E7] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#A96F05]">
+                    <span className="shrink-0 rounded-full border border-[#E5DFD0] bg-[#F4F1E9] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#475467]">
                       {p.category}
                     </span>
                   </div>

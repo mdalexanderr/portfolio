@@ -1,10 +1,10 @@
-import { Briefcase, Smile, Clock3, ThumbsUp } from 'lucide-react'
+import { Briefcase, Smile, Clock3, Star } from 'lucide-react'
 
 const STATS = [
-  { icon: Briefcase, value: '15+', label: 'Projects Completed', bg: 'bg-[#FFF4D6]', iconCls: 'text-[#C88A08]' },
+  { icon: Briefcase, value: '15+', label: 'Projects Completed', bg: 'bg-[#F1EEE6]', iconCls: 'text-[#667085]' },
   { icon: Smile, value: '10+', label: 'Happy Clients', bg: 'bg-[#EAF2FF]', iconCls: 'text-[#3B6FD4]' },
   { icon: Clock3, value: '2+', label: 'Years Experience', bg: 'bg-[#EAF8F0]', iconCls: 'text-[#2E9E5B]' },
-  { icon: ThumbsUp, value: '100%', label: 'Client Satisfaction', bg: 'bg-[#F3EDFF]', iconCls: 'text-[#7C5CD6]' },
+  { icon: Star, value: '5★', label: 'Client Feedback', bg: 'bg-[#F1EEE6]', iconCls: 'text-[#667085]' },
 ]
 
 export default function Stats() {

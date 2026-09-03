@@ -5,30 +5,31 @@ import ProjectCTA from './ProjectCTA'
 /**
  * DEMO/PLACEHOLDER CONTENT — these testimonials are illustrative
  * sample content for the design mockup, NOT genuine client reviews.
+ * They are written to show concrete outcomes (not generic praise).
  * Replace with real, verifiable testimonials (with permission) before
  * publishing to production.
  */
 const TESTIMONIALS = [
   {
-    name: 'John Smith',
-    role: 'Business Owner',
-    initials: 'JS',
+    name: 'Marcus Lee',
+    role: 'Online Store Owner',
+    initials: 'ML',
     color: 'from-[#F2CE7A] to-[#D39A18]',
-    text: 'Excellent work! The website exceeded my expectations. Great communication and on-time delivery.',
+    text: 'Our requirements were still fuzzy when we started, but he asked the right questions and turned them into a clear plan. He rebuilt our store so mobile customers finally finish checkout — and kept us informed at every step.',
   },
   {
-    name: 'Sarah Johnson',
-    role: 'E-commerce Entrepreneur',
-    initials: 'SJ',
+    name: 'Amira Hassan',
+    role: 'E-commerce Director',
+    initials: 'AH',
     color: 'from-[#AEC7F0] to-[#6C8CC7]',
-    text: 'Very professional and skilled developer. Delivered a high-quality e-commerce website with all the features I needed.',
+    text: 'He understood how our business actually operates and engineered the admin panel around that — 800+ products, orders and shipping managed daily with no developer needed. It shipped on time and has run smoothly ever since.',
   },
   {
-    name: 'Michael Brown',
-    role: 'Startup Founder',
-    initials: 'MB',
+    name: 'Daniel Okafor',
+    role: 'Training Centre Manager',
+    initials: 'DO',
     color: 'from-[#B9D6C0] to-[#7AA88A]',
-    text: 'Amazing experience! The admin panel is super user-friendly and the performance is outstanding.',
+    text: 'When anything came up — even problems on our side — he diagnosed and fixed it fast. The CMS he delivered lets our team publish updates without touching code, and a year in, reliability has been faultless.',
   },
 ]
 
@@ -44,7 +45,7 @@ function Stars() {
 
 function TestimonialCard({ t }) {
   return (
-    <figure className="relative flex w-[300px] shrink-0 flex-col gap-3 rounded-[16px] border border-[#EAECF0] bg-white p-5 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#E0C58A] sm:w-[340px] lg:w-[360px]">
+    <figure className="relative flex w-[300px] shrink-0 flex-col gap-3 rounded-[16px] border border-[#EAECF0] bg-white p-5 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#D8D2C4] sm:w-[340px] lg:w-[360px]">
       <Quote
         className="absolute right-4 top-4 h-5 w-5 text-[#101828]/[0.07]"
         aria-hidden="true"

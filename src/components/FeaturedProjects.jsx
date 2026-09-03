@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SectionHeading from './ui/SectionHeading'
 import { favonia, projects } from '../data/projects'
@@ -15,22 +15,34 @@ const PROJECTS = [
   {
     name: favonia.name,
     category: favonia.category,
-    desc: favonia.tagline,
     image: favonia.storefrontShots[0].src,
     alt: favonia.storefrontShots[0].alt,
+    lead: 'One custom platform runs the whole business — catalogue, checkout, payments and Malaysia-wide shipping.',
+    points: [
+      '800+ live products managed from a single admin',
+      'Payments, shipping & automatic nightly backups',
+    ],
   },
   {
     name: byName('Practical Doctrinas PLT').name,
     category: byName('Practical Doctrinas PLT').category,
-    desc: byName('Practical Doctrinas PLT').blurb,
     logo: byName('Practical Doctrinas PLT').logo,
     logoWide: byName('Practical Doctrinas PLT').logoWide,
+    lead: 'Training and consulting content now updates in-house — no developer needed for every change.',
+    points: [
+      'CMS so the team publishes programs & services themselves',
+      'PostgreSQL + Docker for dependable delivery',
+    ],
   },
   {
     name: byName('Kazi Technical Systems').name,
     category: byName('Kazi Technical Systems').category,
-    desc: byName('Kazi Technical Systems').blurb,
     logo: byName('Kazi Technical Systems').logo,
+    lead: 'A corporate site the business controls — with a safety net built in.',
+    points: [
+      'Custom admin so staff update content themselves',
+      'Automated backups keep every change safe',
+    ],
   },
 ]
 
@@ -38,12 +50,17 @@ export default function FeaturedProjects() {
   return (
     <section id="portfolio" className="container-site py-[88px] lg:py-[104px]">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeading label="Featured Projects" title="My Recent Works" align="left" />
+        <SectionHeading
+          label="Featured Projects"
+          title="My Recent Works"
+          subtitle="Every build below started with a real business problem — each one is the fix that works."
+          align="left"
+        />
         <Link
           to="/projects"
           className="group inline-flex shrink-0 items-center gap-2 text-[14px] font-semibold text-[#C88A08] transition-colors hover:text-[#A96F05]"
         >
-          View All Projects
+          Explore All Projects
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
         </Link>
       </div>
@@ -52,7 +69,7 @@ export default function FeaturedProjects() {
         {PROJECTS.map((project, i) => (
           <article
             key={project.name}
-            className="reveal group relative flex flex-col overflow-hidden rounded-[16px] border border-[#EAECF0] bg-white shadow-[0_2px_12px_rgba(16,24,40,0.03)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#E7C88A] hover:shadow-[0_26px_50px_-20px_rgba(16,24,40,0.2)]"
+            className="reveal group relative flex flex-col overflow-hidden rounded-[16px] border border-[#EAECF0] bg-white shadow-[0_2px_12px_rgba(16,24,40,0.03)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D8D2C4] hover:shadow-[0_26px_50px_-20px_rgba(16,24,40,0.2)]"
             style={{ animationDelay: `${i * 110}ms` }}
           >
             {/* ------- Media panel (photo or brand mark) ------- */}
@@ -72,7 +89,7 @@ export default function FeaturedProjects() {
                 <span className="absolute inset-0 flex items-center justify-center overflow-hidden bg-[radial-gradient(120%_120%_at_50%_0%,#FFF9EC_0%,#FBF2DD_48%,#F4E8CD_100%)] px-6">
                   <span
                     aria-hidden="true"
-                    className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-[#C88A08]/[0.09] blur-2xl"
+                    className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-[#101828]/[0.04] blur-2xl"
                   />
                   <span
                     aria-hidden="true"
@@ -94,7 +111,7 @@ export default function FeaturedProjects() {
               <div className="pointer-events-none absolute inset-0 -translate-x-[130%] -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-[1100ms] ease-out group-hover/image:translate-x-[130%]" />
 
               {/* Category chip */}
-              <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/50 bg-white/85 px-3 py-1 text-[11px] font-semibold text-[#8a5c05] shadow-sm backdrop-blur-sm">
+              <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/60 bg-white/85 px-3 py-1 text-[11px] font-semibold text-[#344054] shadow-sm backdrop-blur-sm">
                 {project.category}
               </span>
 
@@ -114,7 +131,21 @@ export default function FeaturedProjects() {
               <h3 className="text-[17px] font-bold tracking-tight text-ink transition-colors duration-500 group-hover:text-[#A96F05]">
                 <Link to="/projects">{project.name}</Link>
               </h3>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{project.desc}</p>
+
+              {/* Outcome — the business problem this project solved */}
+              <div className="mt-3 flex items-start gap-2.5 rounded-[10px] border border-[#EFEAE0] bg-[#F9F7F1] px-3 py-2.5">
+                <TrendingUp className="mt-0.5 h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
+                <p className="text-[13px] font-semibold leading-snug text-[#344054]">{project.lead}</p>
+              </div>
+
+              <ul className="mt-3.5 flex flex-col gap-2">
+                {project.points.map((pt) => (
+                  <li key={pt} className="flex items-start gap-2 text-[13px] leading-snug text-muted">
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#98A2B3]" aria-hidden="true" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
 
               {/* Footer link */}
               <div className="mt-4 flex items-center justify-between border-t border-[#F1EFE9] pt-3.5">

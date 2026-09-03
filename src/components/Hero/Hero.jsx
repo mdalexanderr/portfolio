@@ -25,24 +25,25 @@ export default function Hero() {
           <div className="hgl max-w-[560px]">
             {/* Badge */}
             <div className="reveal inline-flex items-center gap-2 rounded-full border border-[#EDD9A6] bg-[#FFF6E0] px-4 py-2 text-[13px] font-medium text-[#101828]">
-              <Code2 className="h-4 w-4 text-[#C88A08]" aria-hidden="true" />
+              <Code2 className="h-4 w-4 text-[#667085]" aria-hidden="true" />
               <span className="opacity-60">&lt;/&gt;</span>
               Full Stack Web Developer
             </div>
 
             {/* Headline */}
             <h1 className="reveal mt-5 text-[25px] font-extrabold leading-[1.12] tracking-tight text-ink sm:text-[38px] lg:text-[46px]" style={{ animationDelay: '0.08s' }}>
-              <span className="block">I Build Custom</span>
               <span className="block">
-                <span className="text-gradient">E-commerce</span> Websites
+                I Build <span className="text-gradient">High-Performance</span>
               </span>
-              <span className="block">That Drive Results</span>
+              <span className="block">Websites That Drive</span>
+              <span className="block">Business Growth</span>
             </h1>
 
             {/* Description */}
             <p className="reveal mt-5 max-w-[480px] text-[16px] leading-[1.55] text-[#475467]" style={{ animationDelay: '0.16s' }}>
-              I design and develop high-performance, secure and scalable
-              e-commerce websites tailored to your business.
+              I design and develop high-performance websites, e-commerce
+              platforms, and custom web applications built for real-world
+              business needs.
             </p>
 
             {/* Buttons */}

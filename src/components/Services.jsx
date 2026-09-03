@@ -12,37 +12,37 @@ const SERVICES = [
   {
     icon: ShoppingCart,
     title: 'Custom E-commerce',
-    desc: 'Tailored online stores with powerful features to grow your business.',
-    tint: 'bg-[#FFF4D6] text-[#C88A08]',
+    desc: 'Conversion-focused online stores with product management, checkout, payments, and scalable architecture.',
+    tint: 'bg-[#F1EEE6] text-[#667085]',
   },
   {
     icon: MonitorSmartphone,
     title: 'Responsive Design',
-    desc: 'Mobile-first, fully responsive websites for all devices.',
+    desc: 'Websites that look sharp and work flawlessly on every screen — turning mobile visitors into customers.',
     tint: 'bg-[#EAF2FF] text-[#3B6FD4]',
   },
   {
     icon: CreditCard,
     title: 'Payment Integration',
-    desc: 'Secure payment gateway integration with multiple options.',
+    desc: 'Secure checkout experiences integrated with the payment gateways your customers already use.',
     tint: 'bg-[#EAF8F0] text-[#2E9E5B]',
   },
   {
     icon: LayoutDashboard,
     title: 'Admin Dashboard',
-    desc: 'Powerful admin panels to manage products, orders & users.',
+    desc: 'A command center to manage products, orders, customers, and insights without touching code.',
     tint: 'bg-[#F3EDFF] text-[#7C5CD6]',
   },
   {
     icon: Plug2,
     title: 'API Integration',
-    desc: 'Third-party API integration & custom API development.',
+    desc: 'Connect your platform to the tools you rely on — payments, shipping, CRMs — with data in sync automatically.',
     tint: 'bg-[#FFF0E5] text-[#EA580C]',
   },
   {
     icon: Gauge,
     title: 'SEO & Performance',
-    desc: 'Optimized websites for speed, SEO and best performance.',
+    desc: 'Fast, search-optimized sites that rank higher, load instantly, and convert more visitors.',
     tint: 'bg-[#FDEDF4] text-[#DB2777]',
   },
 ]
@@ -61,22 +61,22 @@ export default function Services() {
         {SERVICES.map((service) => (
           <article
             key={service.title}
-            className="reveal card group relative flex flex-col gap-4 overflow-hidden p-5 transition-all duration-1000! ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#E7C88A] hover:shadow-[0_16px_36px_-14px_rgba(200,138,8,0.3)]"
+            className="reveal card group relative flex flex-col gap-4 overflow-hidden p-5 transition-all duration-1000! ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-[#D8D2C4] hover:shadow-[0_16px_36px_-14px_rgba(16,24,40,0.12)]"
           >
-            {/* Sweeping gold top accent */}
+            {/* Sweeping neutral top accent */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#C88A08] to-[#E7C87B] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+              className="pointer-events-none absolute inset-x-0 top-0 h-[2.5px] origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#98A2B3] to-transparent transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
             />
-            {/* Soft warm glow */}
+            {/* Soft neutral glow */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(200,138,8,0.16),transparent_70%)] opacity-0 blur-lg transition-opacity duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+              className="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(16,24,40,0.07),transparent_70%)] opacity-0 blur-lg transition-opacity duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
             />
 
             {/* Icon chip — fills with a gold gradient + lifts on hover */}
             <div
-              className={`flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-black/[0.04] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-[#F2CE7A] group-hover:to-[#C88A08] group-hover:text-white group-hover:shadow-[0_10px_22px_-8px_rgba(200,138,8,0.55)] ${service.tint}`}
+              className={`flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-black/[0.04] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[#101828] group-hover:text-white group-hover:shadow-[0_10px_22px_-8px_rgba(16,24,40,0.35)] ${service.tint}`}
             >
               <service.icon className="h-5 w-5 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-rotate-6 group-hover:scale-110" aria-hidden="true" />
             </div>

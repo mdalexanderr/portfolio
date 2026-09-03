@@ -118,7 +118,7 @@ export default function Navbar() {
                 aria-current={isActive(link.id) ? 'true' : undefined}
                 className={`relative inline-flex flex-col items-center text-[14px] font-medium leading-none transition-colors duration-200 ${
                   isActive(link.id)
-                    ? 'text-[#C88A08]'
+                    ? 'font-semibold text-[#101828]'
                     : 'text-[#475467] hover:text-[#101828]'
                 }`}
               >
@@ -126,7 +126,7 @@ export default function Navbar() {
                 {/* Active dot — anchored under the label so it never jumps when the bar compresses */}
                 <span
                   aria-hidden="true"
-                  className={`absolute left-1/2 top-full mt-[7px] h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-[#C88A08] transition-opacity duration-200 ${
+                  className={`absolute left-1/2 top-full mt-[7px] h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-[#101828] transition-opacity duration-200 ${
                     isActive(link.id) ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
@@ -181,7 +181,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className={`block rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors ${
                   isActive(link.id)
-                    ? 'text-[#C88A08]'
+                    ? 'font-semibold text-[#101828]'
                     : 'text-[#475467] hover:bg-[#F7F4EC] hover:text-[#101828]'
                 }`}
               >

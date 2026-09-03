@@ -34,8 +34,9 @@ export default function Footer() {
               <span className="text-ink">web</span>
             </Link>
             <p className="max-w-[280px] text-[14px] leading-relaxed text-muted">
-              Full stack developer passionate about building high-performance,
-              scalable and beautiful web applications.
+              Full-stack developer building high-performance websites,
+              e-commerce platforms, and custom web applications for growing
+              businesses.
             </p>
             <ul className="flex items-center gap-3" aria-label="Social links">
               {SOCIALS.map((s) => (
@@ -85,7 +86,7 @@ export default function Footer() {
             <h3 className="text-[14px] font-bold uppercase tracking-wider text-ink">Contact Info</h3>
             <ul className="mt-4 flex flex-col gap-3">
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 shrink-0 text-[#C88A08]" aria-hidden="true" />
+                <Mail className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
                 <a
                   href={GMAIL_URL}
                   target="_blank"
@@ -97,7 +98,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MessageCircle className="h-4 w-4 shrink-0 text-[#C88A08]" aria-hidden="true" />
+                <MessageCircle className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -109,7 +110,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 shrink-0 text-[#C88A08]" aria-hidden="true" />
+                <MapPin className="h-4 w-4 shrink-0 text-[#98A2B3]" aria-hidden="true" />
                 <span className="text-[14px] text-[#475467]">{LOCATION}</span>
               </li>
               <li className="flex items-center gap-3">
@@ -125,7 +126,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-9 flex flex-col items-center justify-between gap-3 border-t border-[#EAECF0] pt-5 sm:flex-row">
-          <p className="text-[13px] text-[#98A2B3]">© 2024 md.alexander. All rights reserved.</p>
+          <p className="text-[13px] text-[#98A2B3]">© 2026 md.alexander. All rights reserved.</p>
           <p className="flex items-center gap-1.5 text-[13px] text-[#98A2B3]">
             Designed &amp; Developed with <span className="text-rose-500" aria-hidden="true">♥</span>
           </p>

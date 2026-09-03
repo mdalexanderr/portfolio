@@ -13,7 +13,7 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col ${alignCls} gap-3 ${className}`}>
       <span className="section-label">
-        <span aria-hidden="true" className="h-px w-5 bg-[#C88A08]" />
+        <span aria-hidden="true" className="h-px w-5 bg-[#D9D2C2]" />
         {label}
       </span>
       <h2 className="text-[30px] leading-tight font-extrabold tracking-tight text-ink sm:text-[36px]">

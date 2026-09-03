@@ -85,7 +85,7 @@ export default function ContactPage() {
         <section className="bg-white">
           <div className="container-site pb-10 pt-[104px] lg:pb-12 lg:pt-[122px]">
             <p className="reveal section-label">
-              <span aria-hidden="true" className="h-px w-6 bg-[#C88A08]" />
+              <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
               Get in Touch
             </p>
             <h1 className="reveal mt-3 max-w-[720px] text-[34px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[44px] lg:text-[52px]">
@@ -119,12 +119,12 @@ export default function ContactPage() {
                     const clickable = !!m.href
                     const cardCls = `group flex w-full items-center justify-between gap-3 rounded-[16px] border border-[#E9E4D8] bg-white p-5 shadow-[0_4px_20px_rgba(16,24,40,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                       clickable
-                        ? 'hover:-translate-y-1 hover:border-[#E0C58A] hover:shadow-[0_22px_44px_-18px_rgba(16,24,40,0.16)]'
+                        ? 'hover:-translate-y-1 hover:border-[#D5CEC0] hover:shadow-[0_22px_44px_-18px_rgba(16,24,40,0.16)]'
                         : 'cursor-default'
                     }`
                     const info = (
                       <span className="flex min-w-0 items-start gap-4">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border border-[#F0E7D2] bg-[#FFF6E0] text-[#A96F05]">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border border-[#EFEAE0] bg-[#F6F3EB] text-[#667085]">
                           <m.icon className="h-5 w-5" aria-hidden="true" />
                         </span>
                         <span className="min-w-0">
@@ -133,7 +133,7 @@ export default function ContactPage() {
                               {m.label}
                             </span>
                             {m.badge && (
-                              <span className="rounded-full bg-[#C88A08] px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-[0.1em] text-white">
+                              <span className="rounded-full bg-[#101828] px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-[0.1em] text-white">
                                 {m.badge}
                               </span>
                             )}
@@ -195,7 +195,7 @@ export default function ContactPage() {
 
                   <div className="relative">
                     <p className="section-label">
-                      <span aria-hidden="true" className="h-px w-6 bg-[#C88A08]" />
+                      <span aria-hidden="true" className="h-px w-6 bg-[#D8D2C2]" />
                       Start a conversation
                     </p>
                     <h2 className="mt-3 text-[24px] font-extrabold leading-tight tracking-tight text-ink sm:text-[30px]">
@@ -247,21 +247,21 @@ export default function ContactPage() {
 
                 {/* Elsewhere */}
                 <div className="reveal mt-6 rounded-[20px] border border-[#E9E4D8] bg-white p-7 sm:p-8">
-                  <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-[#B47A05]">
-                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D9B45C]" />
+                  <h3 className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-[#667085]">
+                    <span aria-hidden="true" className="inline-block h-px w-5 bg-[#D8D2C2]" />
                     What happens next
                   </h3>
                   <ol className="mt-5 flex flex-col gap-5">
                     {STEPS.map((s, i) => (
                       <li key={s.n} className="flex items-start gap-4">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#EDD9A6] bg-[#FFF6E0] text-[13px] font-extrabold text-[#A96F05]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E3DED2] bg-[#F3F0E8] text-[13px] font-extrabold text-[#667085]">
                           {s.n}
                         </span>
                         <div>
                           <p className="flex items-center gap-1.5 text-[15px] font-bold text-ink">
                             {s.title}
                             {i < STEPS.length - 1 && (
-                              <Check className="h-4 w-4 text-[#C88A08]" aria-hidden="true" />
+                              <Check className="h-4 w-4 text-[#98A2B3]" aria-hidden="true" />
                             )}
                           </p>
                           <p className="mt-0.5 text-[13.5px] leading-relaxed text-muted">{s.text}</p>
@@ -276,8 +276,8 @@ export default function ContactPage() {
             {/* Bottom email band */}
             <div className="reveal mt-14 flex flex-col items-start justify-between gap-5 rounded-[18px] border border-[#E9E4D8] bg-white px-7 py-9 sm:flex-row sm:items-center sm:px-10">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#F0E7D2] bg-[#FFF6E0]">
-                  <Send className="h-5 w-5 text-[#A96F05]" aria-hidden="true" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#EFEAE0] bg-[#F6F3EB]">
+                  <Send className="h-5 w-5 text-[#667085]" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-[20px] font-extrabold tracking-tight text-ink">
